@@ -77,6 +77,26 @@ docker build -t pimify:latest .
 docker run --env-file .env -p 8000:8000 --name pimify-container pimify:latest
 ```
 
+### Running migrations manually
+Since there is currently an issue, the migrations and super user creation will have to be done manually.
+The way to do it is: 
+#### First access the container shell in a new terminal
+```bash
+  docker exec -it pimify-container sh
+```
+#### Execute the migrations commands
+```bash
+  python manage.py migrate
+  python manage.py createsuperuser
+```
+I have this noted and will try to rectify the issue.
+
+### To shutdown and remove the container
+```bash
+  docker stop pimify-container
+  docker rm pimify-container //Just in case
+```
+
 ## Contributing
 
 Contributions make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**. See [CONTRIBUTING.md](./CONTRIBUTING.md) for more details on how to contribute.
