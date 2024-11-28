@@ -107,6 +107,26 @@ Once the server starts, you can access the following URLs:
 - **Dashboard**: [http://127.0.0.1:8000/dashboard/](http://127.0.0.1:8000/dashboard/)
 - **API Documentation**: [http://127.0.0.1:8000/api/v1/docs](http://127.0.0.1:8000/api/v1/docs)
 
+### Running migrations manually
+Since there is currently an issue, the migrations and super user creation will have to be done manually.
+The way to do it is: 
+#### First access the container shell in a new terminal
+```bash
+  docker exec -it pimify-container sh
+```
+#### Execute the migrations commands
+```bash
+  python manage.py migrate
+  python manage.py createsuperuser
+```
+I have this noted and will try to rectify the issue.
+
+### To shutdown and remove the container
+```bash
+  docker stop pimify-container
+  docker rm pimify-container //Just in case
+```
+
 ## Contributing
 
 Contributions make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**. See [CONTRIBUTING.md](./CONTRIBUTING.md) for more details on how to contribute.
