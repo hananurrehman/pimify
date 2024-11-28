@@ -15,8 +15,8 @@ DOMAIN = config("DOMAIN")
 
 # Configure allowed hosts and CSRF settings
 ALLOWED_HOSTS = [DOMAIN, '127.0.0.1', 'localhost']
-CSRF_TRUSTED_ORIGINS = [DOMAIN, 'http://127.0.0.1', 'http://localhost']
-
+CSRF_TRUSTED_ORIGINS = [f"{DOMAIN}", 'http://127.0.0.1', 'http://localhost']
+    
 # Define application categories
 LOCAL_APPS = [
     'api',
