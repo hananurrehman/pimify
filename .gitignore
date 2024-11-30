@@ -4,6 +4,7 @@ core/__pycache__
 api/__pycache__
 api/migrations
 api/management/commands/__pycache__
+script/gunicorn/__pycache__
 media
 static
 node_modules/
