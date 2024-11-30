@@ -13,3 +13,8 @@ node_modules/
 /blob-report/
 /playwright/.cache/
 /tests/auth/user.json
+node_modules/
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
