@@ -13,7 +13,7 @@ You can set up the project quickly by running the installation script. Make sure
 
 Ensure the following is installed on your system:
 
-- **Python** (version 3.7 or higher)
+- **Python** (version 3.10 or higher)
 
 ### Clone the project & Go to the project directory
 
@@ -76,6 +76,36 @@ OPEN_EXCHANGE_RATES_APP_ID=None
 docker build -t pimify:latest .
 docker run --env-file .env -p 8000:8000 --name pimify-container pimify:latest
 ```
+
+### Create superuser
+```bash
+docker exec -it container-id sh
+/app > source env/bin/activate # activate viruta environment
+/app > python manage.py createsuperuser # create superuser
+```
+
+## 📂 Important Folders
+
+Pimify relies on three main folders for data storage and management. Make sure these folders are properly configured in your environment:
+
+1. **`data/`**: 
+   - Stores the actual database file.
+
+2. **`backups/`**: 
+   - Contains database backups (last 3 months by default).
+   - You can update this setting in the `scheduler.py` file if you want to adjust the backup retention period.
+
+3. **`media/`**: 
+   - Stores image and video files.
+
+Ensure these folders are persisted properly when running Pimify in a containerized or production environment.
+
+## 🚀 Getting Started
+
+Once the server starts, you can access the following URLs:
+
+- **Dashboard**: [http://127.0.0.1:8000/dashboard/](http://127.0.0.1:8000/dashboard/)
+- **API Documentation**: [http://127.0.0.1:8000/api/v1/docs](http://127.0.0.1:8000/api/v1/docs)
 
 ### Running migrations manually
 Since there is currently an issue, the migrations and super user creation will have to be done manually.

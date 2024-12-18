@@ -23,6 +23,12 @@ pip install --upgrade pip
 echo Installing dependencies...
 pip install -r requirements.txt
 
+:: Create the 'data' and 'media' directory
+echo "Creating data, backup and media directory"
+mkdir data
+mkdir backups
+mkdir media
+
 :: Run migrations
 echo Running migrations...
 python manage.py migrate
@@ -33,8 +39,13 @@ python manage.py migrate
 echo Collect statis files...
 python manage.py collectstatic
 
-echo "Superuser created with username 'admin' and password 'admin123'"
-echo "**IMPORTANT:** Change the password immediately after logging in for the first time."
+# Start the scheduler
+echo "Starting scheduler..."
+python manage.py scheduler
+
+# Create Superuser
+echo "Creating superuser..."
+python manage.py createsuperuser
 
 :: Start the development server
 echo Starting the server...
