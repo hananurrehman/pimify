@@ -1,7 +1,7 @@
 import { test as setup, expect } from '@playwright/test';
 import path from 'path';
 
-const authFile = path.join(__dirname, './auth/user.json');
+const authFile = path.join(__dirname, './user.json');
 const username = process.env.DJANGO_SUPERUSER_USERNAME ?? ''
 const password = process.env.DJANGO_SUPERUSER_PASSWORD ?? ''
 

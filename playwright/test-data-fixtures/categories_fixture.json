@@ -1,0 +1,26 @@
+[
+  {
+    "model": "api.category",
+    "pk": 1,
+    "fields": {
+      "name": "Electronics",
+      "slug": "electronics"
+    }
+  },
+  {
+    "model": "api.category",
+    "pk": 2,
+    "fields": {
+      "name": "Books",
+      "slug": "books"
+    }
+  },
+  {
+    "model": "api.category",
+    "pk": 3,
+    "fields": {
+      "name": "Fashion",
+      "slug": "fashion"
+    }
+  }
+]

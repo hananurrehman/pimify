@@ -1,11 +1,12 @@
 # pimify
+
 ![GitHub License](https://img.shields.io/github/license/suriya-mca/pimify) ![GitHub commit activity](https://img.shields.io/github/commit-activity/t/suriya-mca/pimify) ![GitHub Repo stars](https://img.shields.io/github/stars/suriya-mca/pimify?style=flat&color=pink) ![GitHub forks](https://img.shields.io/github/forks/suriya-mca/pimify?style=flat&color=yellow) ![GitHub Release](https://img.shields.io/github/v/release/suriya-mca/pimify?color=green)
 
 Pimify is an open-source Product Information Management (PIM) platform
 
 ![image](https://github.com/user-attachments/assets/58157365-d1ea-4aa7-8556-a717c73861c4)
 
-## 	⚡Quick Installation with Script
+## ⚡Quick Installation with Script
 
 You can set up the project quickly by running the installation script. Make sure you have the necessary permissions.
 
@@ -78,6 +79,7 @@ docker run --env-file .env -p 8000:8000 --name pimify-container pimify:latest
 ```
 
 ### Create superuser
+
 ```bash
 docker exec -it container-id sh
 /app > source env/bin/activate # activate viruta environment
@@ -88,14 +90,16 @@ docker exec -it container-id sh
 
 Pimify relies on three main folders for data storage and management. Make sure these folders are properly configured in your environment:
 
-1. **`data/`**: 
+1. **`data/`**:
+
    - Stores the actual database file.
 
-2. **`backups/`**: 
+2. **`backups/`**:
+
    - Contains database backups (last 3 months by default).
    - You can update this setting in the `scheduler.py` file if you want to adjust the backup retention period.
 
-3. **`media/`**: 
+3. **`media/`**:
    - Stores image and video files.
 
 Ensure these folders are persisted properly when running Pimify in a containerized or production environment.
@@ -107,21 +111,14 @@ Once the server starts, you can access the following URLs:
 - **Dashboard**: [http://127.0.0.1:8000/dashboard/](http://127.0.0.1:8000/dashboard/)
 - **API Documentation**: [http://127.0.0.1:8000/api/v1/docs](http://127.0.0.1:8000/api/v1/docs)
 
-### Running migrations manually
-Since there is currently an issue, the migrations and super user creation will have to be done manually.
-The way to do it is: 
-#### First access the container shell in a new terminal
+### To load data from fixtures
+
 ```bash
-  docker exec -it pimify-container sh
+python manage.py loaddata tests/test-data-fixtures/categories_fixture.json
 ```
-#### Execute the migrations commands
-```bash
-  python manage.py migrate
-  python manage.py createsuperuser
-```
-I have this noted and will try to rectify the issue.
 
 ### To shutdown and remove the container
+
 ```bash
   docker stop pimify-container
   docker rm pimify-container //Just in case
