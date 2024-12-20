@@ -4,7 +4,7 @@ import path from "path";
 dotenv.config({ path: path.resolve(__dirname, ".env") });
 
 export default defineConfig({
-  testDir: "./playwright/tests",
+  testDir: "./e2e",
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 0,
@@ -17,15 +17,15 @@ export default defineConfig({
   projects: [
     {
       name: "setup",
-      testMatch: /.*\.setup\.ts/,
+      testMatch: /.*e2e\/utils\/setup-teardown\/auth\.setup\.ts/,
     },
     {
       name: "chromium",
+      dependencies: ["setup"],
       use: {
         ...devices["Desktop Chrome"],
-        storageState: "./playwright/utils/setup-teardown/user.json",
+        storageState: "./e2e/utils/setup-teardown/user.json",
       },
-      dependencies: ["setup"],
     },
   ],
 });

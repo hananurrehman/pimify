@@ -114,7 +114,7 @@ Once the server starts, you can access the following URLs:
 ### To load data from fixtures
 
 ```bash
-python manage.py loaddata tests/test-data-fixtures/categories_fixture.json
+python manage.py loaddata playwright/test-data-fixtures/categories_fixture.json
 ```
 
 ### To shutdown and remove the container

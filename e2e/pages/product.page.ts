@@ -7,8 +7,8 @@ export default class Product {
   }
 
   navigateToProductCreationPage = async () => {
-    this.page.getByRole("link", { name: "box Products" }).click();
-    this.page.getByRole("link", { name: "add" }).click();
+    await this.page.getByRole("link", { name: "box Products" }).click();
+    await this.page.getByRole("link", { name: "add" }).click();
   };
 
   fillName = async (name: string) =>
@@ -20,14 +20,11 @@ export default class Product {
   fillDescription = async (description: string) =>
     this.page.locator(PRODUCT_LOCATORS.description).fill(description);
 
-  fillPrice = async (price: string) => {
+  fillPrice = async (price: string) =>
     this.page.locator(PRODUCT_LOCATORS.price).fill(price);
-  };
 
-  selectCategory = async (category: string) => {
-    // Open the dropdown first
+  selectCategory = async (category: string) =>
     this.page.locator("option", { hasText: category }).click();
-  };
 
   saveForm = async () =>
     this.page.getByRole("button", { name: "Save", exact: true }).click();
@@ -51,6 +48,13 @@ export default class Product {
     await this.fillDescription(description);
     await this.fillPrice(price);
     await this.selectCategory(category);
+    await this.saveForm();
+  };
+
+  editProduct = async (sku: string, newSku: string) => {
+    await this.page.getByRole("cell", { name: sku }).click();
+    await this.page.locator(PRODUCT_LOCATORS.sku).clear();
+    await this.fillSku(newSku);
     await this.saveForm();
   };
 }
