@@ -16,7 +16,7 @@ test.describe("Product CRUD tests", async () => {
     await page.goto("");
   });
 
-  test("Should Create a product with all fields filled in", async ({
+  test("Should Create a product with all fields filled in and then delete it", async ({
     page,
   }) => {
     const product = new Product(page);
@@ -35,9 +35,19 @@ test.describe("Product CRUD tests", async () => {
         page.getByRole("cell", { name: testProduct.name })
       ).toBeVisible();
     });
+
+    await test.step("Step 3: Delete product", async () => {
+      await product.deleteProduct(testProduct.sku);
+    });
+
+    await test.step("Step 4: Verify product is deleted", async () => {
+      await expect(
+        page.getByRole("cell", { name: testProduct.name })
+      ).not.toBeVisible();
+    });
   });
 
-  test.only("Should update a product", async ({ page }) => {
+  test("Should update a product", async ({ page }) => {
     const product = new Product(page);
     const newSku = faker.string.alphanumeric(8).toUpperCase();
 

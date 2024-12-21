@@ -17,7 +17,7 @@ export default defineConfig({
   projects: [
     {
       name: "setup",
-      testMatch: /.*e2e\/utils\/setup-teardown\/auth\.setup\.ts/,
+      testMatch: /.*\.setup\.ts/,
     },
     {
       name: "chromium",
