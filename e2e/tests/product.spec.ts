@@ -7,11 +7,11 @@ test.describe("Product CRUD tests", async () => {
 
   test.beforeEach(async ({ page }) => {
     testProduct = {
-      name: faker.commerce.productName(),
-      sku: faker.string.alphanumeric(8).toUpperCase(),
-      description: faker.lorem.words(),
-      price: faker.commerce.price({ min: 10, max: 50, dec: 0 }),
-      category: "Electronics",
+      productName: faker.commerce.productName(),
+      productSku: faker.string.alphanumeric(8).toUpperCase(),
+      productDescription: faker.lorem.words(),
+      productPrice: faker.commerce.price({ min: 10, max: 50, dec: 0 }),
+      productCategory: "Electronics",
     };
     await page.goto("");
   });
@@ -28,21 +28,21 @@ test.describe("Product CRUD tests", async () => {
     await test.step("Step 2: Verify product creation", async () => {
       // There are 2 possibilities here
       await expect(
-        page.locator("td").filter({ hasText: testProduct.name })
+        page.locator("td").filter({ hasText: testProduct.productName })
       ).toBeVisible();
 
       await expect(
-        page.getByRole("cell", { name: testProduct.name })
+        page.getByRole("cell", { name: testProduct.productName })
       ).toBeVisible();
     });
 
     await test.step("Step 3: Delete product", async () => {
-      await product.deleteProduct(testProduct.sku);
+      await product.deleteProduct(testProduct.productSku);
     });
 
     await test.step("Step 4: Verify product is deleted", async () => {
       await expect(
-        page.getByRole("cell", { name: testProduct.name })
+        page.getByRole("cell", { name: testProduct.productName })
       ).not.toBeVisible();
     });
   });
@@ -56,7 +56,7 @@ test.describe("Product CRUD tests", async () => {
     });
 
     await test.step("Step 2: Edit product", async () => {
-      await product.editProduct(testProduct.sku, newSku);
+      await product.editProduct(testProduct.productSku, newSku);
     });
 
     await test.step("Step 3: Verify product update", async () => {

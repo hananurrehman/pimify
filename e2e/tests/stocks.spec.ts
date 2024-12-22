@@ -3,7 +3,7 @@ import Stocks from "../pages/stocks.page";
 import { faker } from "@faker-js/faker";
 
 test.describe("Stock tests", async () => {
-  test("Create a stock", async ({ page }) => {
+  test("Should create a stock and then delete it", async ({ page }) => {
     const stocks = new Stocks(page);
     const teststock = {
       productSku: "TEST",
@@ -29,11 +29,11 @@ test.describe("Stock tests", async () => {
     });
 
     await test.step("Step 4: Verify stock is deleted", async () => {
-     await expect(
-       page.getByRole("row", {
-         name: `${teststock.productSku} ${teststock.stockQuantity} ${teststock.warehouseName}`,
-       })
-     ).toHaveCount(0);
+      await expect(
+        page.getByRole("row", {
+          name: `${teststock.productSku} ${teststock.stockQuantity} ${teststock.warehouseName}`,
+        })
+      ).toHaveCount(0);
     });
   });
 });

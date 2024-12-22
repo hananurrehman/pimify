@@ -2,18 +2,20 @@ import { BasePage } from "./base.page";
 
 export default class Warehouses extends BasePage {
   createWarehouse = async ({
-    name,
-    address,
+    warehouseName,
+    warehouseAddress,
   }: {
-    name: string;
-    address: string;
+    warehouseName: string;
+    warehouseAddress: string;
   }) => {
     await this.navigateToCreationPage("warehouse Warehouses");
-    await this.fillName(name);
-    await this.fillAddress(address);
+    await this.fillName(warehouseName);
+    await this.fillAddress(warehouseAddress);
     await this.saveForm();
   };
 
-  deleteWarehouse = async (warehouseName: string) =>
-    this.deleteEntity(warehouseName, "warehouse");
+  deleteWarehouse = async (warehouseName: string) => {
+    await this.navigateToDetailPage(warehouseName);
+    await this.deleteOperation("warehouse");
+  };
 }

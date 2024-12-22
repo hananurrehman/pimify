@@ -1,49 +1,52 @@
+import { COMMON_LOCATORS } from "../constants/locators/common";
 import { PRODUCT_LOCATORS } from "../constants/locators/product";
 import { BasePage } from "./base.page";
 
 export default class Product extends BasePage {
-  fillSku = async (sku: string) =>
-    this.page.locator(PRODUCT_LOCATORS.sku).fill(sku);
+  fillSku = async (productSku: string) =>
+    this.page.locator(PRODUCT_LOCATORS.sku).fill(productSku);
 
-  fillDescription = async (description: string) =>
-    this.page.locator(PRODUCT_LOCATORS.description).fill(description);
+  fillDescription = async (productDescription: string) =>
+    this.page.locator(PRODUCT_LOCATORS.description).fill(productDescription);
 
-  fillPrice = async (price: string) =>
-    this.page.locator(PRODUCT_LOCATORS.price).fill(price);
+  fillPrice = async (productPrice: string) =>
+    this.page.locator(PRODUCT_LOCATORS.price).fill(productPrice);
 
-  selectCategory = async (category: string) =>
-    this.page.locator("option", { hasText: category }).click();
+  selectCategory = async (productCategory: string) =>
+    this.page.locator("option", { hasText: productCategory }).click();
 
   createProduct = async ({
-    name,
-    sku,
-    description,
-    price,
-    category,
+    productName,
+    productSku,
+    productDescription,
+    productPrice,
+    productCategory,
   }: {
-    name: string;
-    sku: string;
-    description: string;
-    price: string;
-    category: string;
+    productName: string;
+    productSku: string;
+    productDescription: string;
+    productPrice: string;
+    productCategory: string;
   }) => {
     await this.navigateToCreationPage("box Product");
-    await this.fillName(name);
-    await this.fillSku(sku);
-    await this.fillDescription(description);
-    await this.fillPrice(price);
-    await this.selectCategory(category);
+    // Trying out a more DRY approach here
+    await this.fillInput(COMMON_LOCATORS.name, productName);
+    await this.fillInput(PRODUCT_LOCATORS.sku, productSku);
+    await this.fillInput(PRODUCT_LOCATORS.description, productDescription);
+    await this.fillInput(PRODUCT_LOCATORS.price, productPrice);
+    await this.selectCategory(productCategory);
     await this.saveForm();
   };
 
-  editProduct = async (sku: string, newSku: string) => {
-    await this.navigateToDetailPage(sku);
+  editProduct = async (productSku: string, newSku: string) => {
+    await this.navigateToDetailPage(productSku);
     await this.page.locator(PRODUCT_LOCATORS.sku).clear();
     await this.fillSku(newSku);
     await this.saveForm();
   };
 
-  deleteProduct = async (sku: string) => {
-    await this.deleteEntity(sku, "product");
+  deleteProduct = async (productSku: string) => {
+    await this.navigateToDetailPage(productSku);
+    await this.deleteOperation("product");
   };
 }

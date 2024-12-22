@@ -3,11 +3,11 @@ import Warehouses from "../pages/warehouses.page";
 import { faker } from "@faker-js/faker";
 
 test.describe("Warehouse tests", async () => {
-  test("Create a Warehouse", async ({ page }) => {
+  test("Should create a Warehouse and then delete it", async ({ page }) => {
     const warehouses = new Warehouses(page);
     const testWarehouse = {
-      name: "Test Warehouse",
-      address: faker.location.streetAddress({ useFullAddress: true }),
+      warehouseName: "Warehouse test",
+      warehouseAddress: faker.location.streetAddress({ useFullAddress: true }),
     };
 
     await test.step("Step 1: Create a Warehouse", async () => {
@@ -17,17 +17,17 @@ test.describe("Warehouse tests", async () => {
 
     await test.step("Step 2: Verify Warehouse creation", async () => {
       await expect(
-        page.getByRole("cell", { name: testWarehouse.name })
+        page.getByRole("cell", { name: testWarehouse.warehouseName })
       ).toBeVisible();
     });
 
     await test.step("Step 3: Delete Warehouse", async () => {
-      await warehouses.deleteWarehouse(testWarehouse.name);
+      await warehouses.deleteWarehouse(testWarehouse.warehouseName);
     });
 
     await test.step("Step 4: Verify Warehouse is deleted", async () => {
       await expect(
-        page.getByRole("cell", { name: testWarehouse.name })
+        page.getByRole("cell", { name: testWarehouse.warehouseName })
       ).toHaveCount(0);
     });
   });
