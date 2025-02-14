@@ -6,9 +6,9 @@ test.describe("Stock tests", async () => {
   test("Should create a stock and then delete it", async ({ page }) => {
     const stocks = new Stocks(page);
     const teststock = {
-      productSku: "TEST",
+      productSku: "SMT12345",
       stockQuantity: faker.number.int({ min: 10, max: 100 }).toString(),
-      warehouseName: "Test Warehouse",
+      warehouseName: "Central Warehouse",
     };
 
     await test.step("Step 1: Create a stock", async () => {

@@ -1,0 +1,26 @@
+[
+  {
+    "model": "api.warehouse",
+    "pk": "wh_1",
+    "fields": {
+      "name": "Central Warehouse",
+      "address": "123 Warehouse Blvd, Industrial Park, CA"
+    }
+  },
+  {
+    "model": "api.warehouse",
+    "pk": "wh_2",
+    "fields": {
+      "name": "East Coast Depot",
+      "address": "456 Atlantic Rd, New Jersey, NJ"
+    }
+  },
+  {
+    "model": "api.warehouse",
+    "pk": "wh_3",
+    "fields": {
+      "name": "West Coast Storage",
+      "address": "789 Pacific St, San Francisco, CA"
+    }
+  }
+]

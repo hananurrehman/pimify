@@ -111,17 +111,26 @@ Once the server starts, you can access the following URLs:
 - **Dashboard**: [http://127.0.0.1:8000/dashboard/](http://127.0.0.1:8000/dashboard/)
 - **API Documentation**: [http://127.0.0.1:8000/api/v1/docs](http://127.0.0.1:8000/api/v1/docs)
 
-### To load data from fixtures
-
-```bash
-python manage.py loaddata playwright/test-data-fixtures/categories_fixture.json
-```
-
 ### To shutdown and remove the container
 
 ```bash
   docker stop pimify-container
-  docker rm pimify-container //Just in case
+  docker rm pimify-container
+```
+
+## 🎭 Playwright tests
+Playwright tests are added under the [e2e](https://github.com/hananurrehman/pimify/tree/main/e2e) folder. You must load data from fixtures in order to run the tests.
+
+### To load test data from fixtures
+```bash
+python manage.py loaddata e2e/test-data-fixtures/categories_fixture.json
+python manage.py loaddata e2e/test-data-fixtures/products_fixture.json
+python manage.py loaddata e2e/test-data-fixtures/suppliers_fixture.json
+python manage.py loaddata e2e/test-data-fixtures/warehouse_fixture.json
+```
+### To run playwright tests
+```bash
+   npx playwright test
 ```
 
 ## Contributing

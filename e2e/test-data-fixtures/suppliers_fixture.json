@@ -1,0 +1,32 @@
+[
+  {
+    "model": "api.supplier",
+    "pk": "sup_1",
+    "fields": {
+      "name": "Tech Supplies Inc.",
+      "email": "contact@techsupplies.com",
+      "phone": "+1234567890",
+      "address": "123 Tech Street, Silicon Valley, CA"
+    }
+  },
+  {
+    "model": "api.supplier",
+    "pk": "sup_2",
+    "fields": {
+      "name": "Book World Ltd.",
+      "email": "sales@bookworld.com",
+      "phone": "+1987654321",
+      "address": "456 Book Avenue, New York, NY"
+    }
+  },
+  {
+    "model": "api.supplier",
+    "pk": "sup_3",
+    "fields": {
+      "name": "Fashion Apparel Co.",
+      "email": "info@fashionapparel.com",
+      "phone": "+1122334455",
+      "address": "789 Fashion Rd, Los Angeles, CA"
+    }
+  }
+]

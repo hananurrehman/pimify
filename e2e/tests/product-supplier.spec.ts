@@ -2,12 +2,12 @@ import { test, expect } from "@playwright/test";
 import ProductSupplier from "../pages/product-supplier.page";
 import { faker } from "@faker-js/faker";
 
-test.describe("Product Supplier tests", async () => {
-  test("Create a Product Supplier", async ({ page }) => {
+test.describe("Product supplier tests", async () => {
+  test("Should create a product supplier and then delete it", async ({ page }) => {
     const productSupplier = new ProductSupplier(page);
     const testProductSupplier = {
-      productSku: "TEST",
-      supplierName: "Test supplier",
+      productSku: "SMT12345",
+      supplierName: "Tech Supplies Inc.",
       costPrice: faker.number
         .float({ min: 10, max: 100, multipleOf: 0.02 })
         .toString(),
